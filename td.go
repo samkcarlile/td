@@ -41,7 +41,6 @@ func main() {
 	}
 
 	app.After = func(c *cli.Context) error {
-		// fmt.Printf("%v\n", storage.Lists["todos"])
 		return saveData(storage)
 	}
 
@@ -110,7 +109,23 @@ func main() {
 		{
 			Name:    "delete",
 			Aliases: []string{"d"},
+			Flags: []cli.Flag{
+				cli.StringFlag{
+					Name:  "list, l",
+					Usage: "delete a list by name",
+				},
+			},
 			Action: func(c *cli.Context) error {
+
+				if storage.Lists[c.String("list")] != nil {
+					delete(storage.Lists, c.String("list"))
+					color.New(
+						color.FgRed,
+						color.Bold,
+					).Println("Deleted list: ", c.String("list"))
+					return nil
+				}
+
 				rawID := c.Args().First()
 				if len(rawID) == 0 {
 					return nil

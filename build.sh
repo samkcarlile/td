@@ -1,3 +1,3 @@
 #!/bin/bash
-go build main.go
-alias td="./main"
+go build td.go
+cp td ~/bin/
