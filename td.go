@@ -174,10 +174,10 @@ func main() {
 			},
 		},
 		{
-			Name:    "complete",
-			Aliases: []string{"c"},
-			Usage: "complete a todo by index",
-			ArgsUsage: "[index]"
+			Name:      "complete",
+			Aliases:   []string{"c"},
+			Usage:     "complete a todo by index",
+			ArgsUsage: "[index]",
 			Action: func(c *cli.Context) error {
 				rawID := c.Args().First()
 				if len(rawID) == 0 {

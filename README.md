@@ -4,6 +4,11 @@
 
 ---
 
+## Install
+
+*You must have Go installed to build td.
+Make `install.sh` executable and run it.
+
 ## Getting Started
 The first time you run `td`, it displays and creates a default list named *todo*. This list becomes the active list by default.
 
