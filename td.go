@@ -60,7 +60,7 @@ func main() {
 	app.Commands = []cli.Command{
 		{
 			Name:      "list",
-			Usage:     "Select the working list or display the lists",
+			Usage:     "Changes the active list or creates a new list. If no arguments are passed, it displays the active list.",
 			ArgsUsage: "[name]",
 			Aliases:   []string{"l"},
 			Action: func(c *cli.Context) error {
@@ -119,8 +119,10 @@ func main() {
 			},
 		},
 		{
-			Name:    "delete",
-			Aliases: []string{"d"},
+			Name:      "delete",
+			Aliases:   []string{"d"},
+			ArgsUsage: "[index]",
+			Usage:     "delete a todo item by index",
 			Flags: []cli.Flag{
 				cli.StringFlag{
 					Name:  "list, l",
@@ -174,6 +176,8 @@ func main() {
 		{
 			Name:    "complete",
 			Aliases: []string{"c"},
+			Usage: "complete a todo by index",
+			ArgsUsage: "[index]"
 			Action: func(c *cli.Context) error {
 				rawID := c.Args().First()
 				if len(rawID) == 0 {
