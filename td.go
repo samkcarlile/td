@@ -12,6 +12,7 @@ import (
 	"strconv"
 
 	"github.com/fatih/color"
+	"github.com/manifoldco/promptui"
 	"github.com/urfave/cli"
 )
 
@@ -30,6 +31,7 @@ type tdTodo struct {
 func main() {
 
 	app := cli.NewApp()
+	app.EnableBashCompletion = true
 	app.Author = "Sam Carlile"
 	app.Version = "1.0.0"
 	app.Name = "td"
@@ -78,6 +80,16 @@ func main() {
 				}
 				return nil
 			},
+			BashComplete: func(c *cli.Context) {
+
+				if c.NArg() > 0 { // If you've already types `td l listname`, this prevents further listname suggestions
+					return
+				}
+
+				for l := range storage.Lists {
+					color.New(color.FgYellow).Println(l)
+				}
+			},
 		},
 		{
 			Name:      "add",
@@ -118,6 +130,20 @@ func main() {
 			Action: func(c *cli.Context) error {
 
 				if storage.Lists[c.String("list")] != nil {
+					prompt := promptui.Prompt{
+						IsConfirm: true,
+						Label:     "Delete list " + c.String("list"),
+					}
+					result, err := prompt.Run()
+
+					if err != nil {
+						return err
+					}
+
+					if result == "N" {
+						return nil
+					}
+
 					delete(storage.Lists, c.String("list"))
 					color.New(
 						color.FgRed,
