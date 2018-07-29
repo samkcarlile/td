@@ -159,7 +159,7 @@ func main() {
 
 				id, err := strconv.Atoi(rawID)
 				if err != nil {
-					return errors.New("Provide a todo number to delete it.")
+					return errors.New("provide a todo number to delete it")
 				}
 
 				if id > len(storage.Lists[storage.CurrentList])-1 || id < 0 {
