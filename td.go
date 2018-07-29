@@ -35,7 +35,7 @@ func main() {
 	app.Author = "Sam Carlile"
 	app.Version = "1.0.0"
 	app.Name = "td"
-	app.Usage = "Get your stuff done"
+	app.Usage = "a nice simple CLI to-do list manager"
 
 	app.Before = func(c *cli.Context) error {
 		storage = loadData()

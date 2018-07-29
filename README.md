@@ -1,4 +1,4 @@
-# td - *A nice, simple CLI to do list manager*
+# td - *A nice simple CLI to-do list manager*
 
 [![asciicast](https://asciinema.org/a/194005.png)](https://asciinema.org/a/194005)
 
