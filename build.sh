@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# Build td.go
 go build td.go
 cp td ~/bin/
 
