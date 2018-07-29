@@ -1,4 +1,4 @@
-package main
+package td
 
 import (
 	"encoding/json"
